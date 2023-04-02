@@ -7,15 +7,15 @@ export const AppConfig = (app: Application) => {
         .use(cors())
         .use(morgan("dev"))
     
-        .all("*",(req: Request, res: Response) => {
+        .get("/", (req: Request, res: Response) => {
+            res.status(201).json({
+            message: "Server is up and running"
+        })
+        app.all("*",(req: Request, res: Response) => {
             res.status(404).json({
             message: `routes not found ${req.originalUrl}`
             })
                 
-        })
-        .get("/", (req: Request, res: Response) => {
-            res.status(201).json({
-            message: "Server is up and running"
         })
     })
     }
